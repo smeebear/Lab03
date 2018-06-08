@@ -12,8 +12,16 @@ Password::Password()
 
 Password::~Password()
 {
-   delete [] viable_words;
-   delete [] all_words;
+    ListArrayIterator iter = new ListArrayIterator(all_words, currAll);	// Create iterator
+    while (iter->hasNext())	// while loop hasNext() 
+    {
+    	String* next = iter->next();
+    	delete next;
+    }	// use next() to get the next
+    	// delete next
+    delete iter;	// after the loop, delete the iterator
+    delete [] viable_words;
+    delete [] all_words;
 }
 
 void Password::addWord(String* word)
@@ -97,7 +105,7 @@ int Password::bestGuess()
    return best_guess_index;  //return a 1-based index into the all_words list of words (careful)
 }
 
-String* Password::getOriginalWord()
+String* Password::getOriginalWord(int index)
 {
 
 }
