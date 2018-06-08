@@ -30,3 +30,4 @@ class Password
 };
 
 #endif
+
