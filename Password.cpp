@@ -6,8 +6,11 @@ using namespace std;
 
 Password::Password()
 {
-   ListArray<String>* viable_words = new ListArray<String> [2];
-   ListArray<String>* all_words = new ListArray<String> [2];
+   ListArray<String>* viable_words = new ListArray<String>;
+   ListArray<String>* all_words = new ListArray<String>;
+   int len = 0;
+   int currVi = viable_words->size();
+   int currAll = all_words->size();
 }
 
 Password::~Password()

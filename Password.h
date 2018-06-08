@@ -3,6 +3,8 @@
 
 #include "Text.h" //complete the includes
 using CSC1310::String;
+#include "ListArray.h"
+using CSC1310::ListArray;
 
 class Password
 {
@@ -10,8 +12,6 @@ class Password
       ListArray<String>* viable_words;  //the list of words that can still be the password
       ListArray<String>* all_words;  //the original list of words
       int len;  //the length of the first word entered is stored to check that all subsequent words have the same length
-      int sizeVi;
-      int sizeAll;
       int currVi;
       int currAll;
 
