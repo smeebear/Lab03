@@ -6,12 +6,14 @@ using namespace std;
 
 Password::Password()
 {
-
+   ListArray<String>* viable_words = new ListArray<String> [2];
+   ListArray<String>* all_words = new ListArray<String> [2];
 }
 
 Password::~Password()
 {
-
+   delete [] viable_words;
+   delete [] all_words;
 }
 
 void Password::addWord(String* word)
@@ -97,5 +99,5 @@ int Password::bestGuess()
 
 String* Password::getOriginalWord()
 {
-   
+
 }
