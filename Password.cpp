@@ -4,9 +4,19 @@ using CSC1310::ListArrayIterator;
 #include <iostream>
 using namespace std;
 
+Password::Password(){
+	ListArray<String>* viable_words = new ListArray<String> [2];
+	ListArray<String>* all_words = new ListArray<String> [2];
+}
 
+Password::~Password(){
+	delete [] viable_words;
+	delete [] all_words;
+}
 
-
+void Password::addWord(String* word){
+	
+}
 
 
 
