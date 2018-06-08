@@ -12,36 +12,76 @@ Password::Password()
 
 Password::~Password()
 {
-    ListArrayIterator iter = new ListArrayIterator(all_words, currAll);	// Create iterator
+    ListArrayIterator<String>* iter = all_words->iterator();	// Create iterator
     while (iter->hasNext())	// while loop hasNext() 
     {
     	String* next = iter->next();
     	delete next;
-    }	// use next() to get the next
-    	// delete next
+    }
+
+    ListArrayIterator<String>* iter2 = viable_words->iterator();	// use next() to get the next
+    while (iter2->hasNext())	// while loop hasNext() 
+    {
+    	String* next = iter2->next();
+    	delete next;
+    }	// delete next
     delete iter;	// after the loop, delete the iterator
+    delete iter2;
     delete [] viable_words;
     delete [] all_words;
 }
 
 void Password::addWord(String* word)
 {
+	all_words->add(word);
+	currAll++;
+}
 
+int Password::getNumMatches(String* curr_word, String* guess_word)
+{
+	int matches = 0;
+	for (int i = 0; i < len; i++)
+	{
+		char c1 = curr_word->charAt(i);
+		char c2 = guess_word->charAt(i);
+
+		if (c1 == c2)
+			num_matches++;
+	}
+	return matches;
 }
 
 void Password::guess(int try_password, int num_matches)
 {
+	String* pw = all_words[try_password];	// try_password is the index from the original words list (all_words)
+	ListArrayIterator<String>* pw_iter = all_words->iterator();	// num_matches is the number of characters that should match
+	while (pw_iter->hasNext())
+	{
+		String* pw_guess = pw_iter->next();
+		int matches = getNumMatches(pw, pw_guess);
+
+		if (matches == num_matches)
+		{
+			viable_words->add(pw_guess);
+		}
+	}	// Walk through each of "all words"
+		// ONLY add them to viable_words IF matches == num_matches
 
 }
 
 int Password::getNumberOfPasswordsLeft()
 {
-
+	return currVi;
 }
 
-void Password::displayPossibleWords()
+void Password::displayViableWords()
 {
-
+	ListArrayIterator<String>* viable_iter = viable_words->iterator();
+	while (viable_iter->hasNext())
+	{
+		viable_words[currVi]->displayString();
+	}
+	delete viable_iter;
 }
 
 int Password::bestGuess()
@@ -107,5 +147,5 @@ int Password::bestGuess()
 
 String* Password::getOriginalWord(int index)
 {
-
+	return all_words[index-1];
 }
