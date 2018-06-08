@@ -1,7 +1,8 @@
 #if !defined PASSWORD_H
 #define PASSWORD_H
 
-//complete the includes
+#include "Text.h" //complete the includes
+using CSC1310::String;
 
 class Password
 {
@@ -22,8 +23,6 @@ class Password
 		void displayViableWords();
 		int bestGuess();
 		String* getOriginalWord(int index);
-
-
 };
 
 #endif
