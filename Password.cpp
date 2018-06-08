@@ -49,14 +49,14 @@ int Password::getNumMatches(String* curr_word, String* guess_word)
 		char c2 = guess_word->charAt(i);
 
 		if (c1 == c2)
-			num_matches++;
+			matches++;
 	}
 	return matches;
 }
 
 void Password::guess(int try_password, int num_matches)
 {
-	String* pw = all_words[try_password];	// try_password is the index from the original words list (all_words)
+	String* pw = all_words->get(try_password);	// try_password is the index from the original words list (all_words)
 	ListArrayIterator<String>* pw_iter = all_words->iterator();	// num_matches is the number of characters that should match
 	while (pw_iter->hasNext())
 	{
@@ -82,7 +82,8 @@ void Password::displayViableWords()
 	ListArrayIterator<String>* viable_iter = viable_words->iterator();
 	while (viable_iter->hasNext())
 	{
-		viable_words[currVi]->displayString();
+		String* currWord = viable_words->get(currVi);
+    currWord->displayString();
 	}
 	delete viable_iter;
 }
@@ -150,5 +151,5 @@ int Password::bestGuess()
 
 String* Password::getOriginalWord(int index)
 {
-	return all_words[index-1];
+	return all_words->get(index-1);
 }
